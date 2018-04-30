@@ -9,7 +9,7 @@
   </head>
   <div id = "page">
     <div id = "logo">
-      <h1 id = "title" align = "center">TutorMatch</>
+      <h1 id = "title" align = "center">TutorMatch/>
     </div>
     <hr>
     <nav id = "tabs">
