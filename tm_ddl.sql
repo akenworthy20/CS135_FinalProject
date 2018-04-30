@@ -4,12 +4,10 @@ USE TM;
 
 CREATE TABLE Student (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  first_name VARCHAR(256) NOT NULL,
-  last_name VARCHAR(256) NOT NULL,
+  name VARCHAR(256) NOT NULL,
   email VARCHAR(256) NOT NULL,
   phone_number VARCHAR (256) NOT NULL,
   major VARCHAR (256) NOT NULL,
-  classes_seeking TEXT NOT NULL,
   monday TINYINT(1),
   tuesday TINYINT(1),
   wednesday TINYINT(1),
@@ -23,8 +21,7 @@ CREATE TABLE Student (
 /*Add deposit info to tutor table*/
 CREATE TABLE Tutor (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  first_name VARCHAR (256) NOT NULL,
-  last_name VARCHAR (256) NOT NULL,
+  name VARCHAR(256) NOT NULL,
   email VARCHAR (256) NOT NULL,
   phone_number VARCHAR (256) NOT NULL,
   year VARCHAR (256) NOT NULL,
