@@ -1,16 +1,16 @@
 <?php
-  function connect_to_db( $dbname ){
-	  $dbc = @mysqli_connect( "localhost", "root", "root", $dbname ) or
-		die( "Connect failed: ". mysqli_connect_error() );
-	  return $dbc;
-  }
-  function disconnect_from_db( $dbc, $result ){
-	  mysqli_free_result( $result );
-	  mysqli_close( $dbc );
-  }
-  function perform_query( $dbc, $query ){
-	  $result = mysqli_query($dbc, $query) or
-		die( "bad query".mysqli_error( $dbc ) );
-	  return $result;
+  class db {
+
+    private function __construct() {}
+
+    private function __clone() {}
+
+    public static function getInstance() {
+        if (!isset(self::$instance)) {
+          $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRORMODE_EXCEPTION;
+          self::instance = new PDO('mysql:host=localhost;dbname=tm_ddl','root','root', $pdo_options);
+        }
+        return self::instance;
+    }
   }
 ?>
