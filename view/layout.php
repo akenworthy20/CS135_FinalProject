@@ -4,24 +4,27 @@
   <head>
     <title>TutorMatch</title>
     <meta name="homepage" content="width=600px" />
-    <link rel="stylesheet" href="homepage.css" type="text/css">
-    <script src="homepage=.js" type="text/javascript"></script>
+    <!--bootstrap css-->
+    <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--bootstrap jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--bootstrap JS-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <div id = "page">
     <div id = "logo">
-      <h1 id = "title" align = "center">TutorMatch/>
+      <h1 id = "title" align = "center">TutorMatch</h1>
     </div>
     <hr>
     <nav id = "tabs">
       <ul align = "center">
-        <strong>Home</strong> |
-        <a href = "register.html">Register</a> |
-        <a href = "faq.html">FAQ</a> |
-        <a href = "about_us.html">About Us</a> |
-        <a href = "contact_us.html">Contact Us</a>
+        <a href = '?controller=pages&action=home'> Home </a> |
+        <a href = '?controller=pages&action=aboutUs'> About Us </a> |
+        <a href = '?controller=pages&action=studentRegister'>Register as Student</a> |
+        <a href = '?controller=pages&action=tutorRegister'>Register as Tutor</a>
       </ul>
     </nav>
     <hr>
-    <? php require_once('routes.php'); ?>
+    <?php require_once('routes.php'); ?>
   </div>
 </html>
