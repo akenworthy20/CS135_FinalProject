@@ -8,10 +8,6 @@
       case 'pages':
         $controller = new PagesController();
       break;
-      case 'forms':
-        require_once('model/forms.php');
-        $controller = new FormsController();
-      break;
     }
 
     //call the action

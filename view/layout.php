@@ -20,8 +20,8 @@
       <ul align = "center">
         <a href = '?controller=pages&action=home'> Home </a> |
         <a href = '?controller=pages&action=aboutUs'> About Us </a> |
-        <a href = '?controller=forms&action=studentRegister'>Register as Student</a> |
-        <a href = '?controller=forms&action=tutorRegister'>Register as Tutor</a>
+        <a href = '?controller=pages&action=studentRegister'>Register as Student</a> |
+        <a href = '?controller=pages&action=tutorRegister'>Register as Tutor</a>
       </ul>
     </nav>
     <hr>
