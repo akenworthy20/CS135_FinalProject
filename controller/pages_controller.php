@@ -30,7 +30,7 @@
 				if (empty($_POST["phone"])) {
 		        echo "<alert> Please input full, valid US phone number </alert>";
 		    } else {
-		      $phone = test_input($_POST["phone"]);
+		      $phone = sanitize($_POST["phone"]);
 		      // check phone number syntax to ensure it is 10 digits long, exactly
 		      if (!preg_match("/[\d{3}]-?[\d{3}]-?[\d{4}]/",$phone)) {
 		        echo "<alert> Please input full, valid US phone number </alert>";
