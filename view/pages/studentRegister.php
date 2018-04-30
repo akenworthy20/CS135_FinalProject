@@ -16,9 +16,40 @@
         <label for='password' >Password*:</label>
         <input type='password' name='password' id='password' maxlength="50" />
 
-        <label for='major'>
+        <label for='major'> Major*:</label>
+        <input type='text' name'phone' id='major' maxlength="50" />
 
-        <label for='availability' >Days with Availability*:</label>
+        <fieldset>
+          <legend>Days available for tutoring:*</legend>
+          <div>
+            <input type="checkbox" id="monday" name="monday" value="monday">
+            <label for="monday">Monday</label>
+          </div>
+          <div>
+            <input type="checkbox" id="tuesday" name="tuesday" value="tuesday">
+            <label for="tuesday">Tuesday</label>
+          </div>
+          <div>
+            <input type="checkbox" id="wednesday" name="wednesday" value="wednesday">
+            <label for="wednesday">Wednesday</label>
+          </div>
+          <div>
+            <input type="checkbox" id="thursday" name="thursday" value="thursday">
+            <label for="thursday">Thursday</label>
+          </div>
+          <div>
+            <input type="checkbox" id="friday" name="friday" value="friday">
+            <label for="monday">Friday</label>
+          </div>
+          <div>
+            <input type="checkbox" id="saturday" name="saturday" value="saturday">
+            <label for="monday">Saturday</label>
+          </div>
+          <div>
+            <input type="checkbox" id="sunday" name="sunday" value="sunday">
+            <label for="monday">Sunday</label>
+          </div>
+        </fieldset>
 
         <input type='submit' name='Submit' value='Submit' />
 
