@@ -6,14 +6,11 @@ CREATE TABLE Student {
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, 
   first_name VARCHAR (256) NOT NULL,  
   last_name VARCHAR (256) NOT NULL, 
-  cell VARCHAR (256) NOT NULL,  
+  phone_number VARCHAR (256) NOT NULL,  
   classes_seeking VARCHAR (256) NOT NULL,
   available_day INT UNSIGNED NOT NULL, 
   available_time TIME NOT NULL,
   grad_year INT UNSIGNED NOT NULL, 
-  cc_number INT UNSIGNED NOT NULL, 
-  exp_date DATE NOT NULL, 
-  sec_code INT UNSIGNED NOT NULL
 }
 
 /*Add deposit info to tutor table*/
@@ -21,7 +18,7 @@ CREATE TABLE Tutor {
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, 
   first_name VARCHAR (256) NOT NULL,  
   last_name VARCHAR (256) NOT NULL, 
-  cell VARCHAR (256) NOT NULL, 
+  phone_number VARCHAR (256) NOT NULL, 
   available_day INT UNSIGNED NOT NULL. 
   available_time TIME NOT NULL,
   grad_year INT UNSIGNED NOT NULL, 
