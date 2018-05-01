@@ -26,6 +26,8 @@ CREATE TABLE Tutor (
   phone_number VARCHAR (256) NOT NULL,
   year VARCHAR (256) NOT NULL,
   major VARCHAR (256) NOT NULL,
+  gpa VARCHAR (256),
+  bio VARCHAR (256),
   monday TINYINT(1),
   tuesday TINYINT(1),
   wednesday TINYINT(1),
