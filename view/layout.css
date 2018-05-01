@@ -34,3 +34,7 @@
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+
+.hide {
+  display: none;
+}
