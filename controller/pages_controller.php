@@ -9,7 +9,6 @@
 		}
 		public function studentRegister() {
 			require_once('view/pages/studentRegister.php');
-			//check if form is complete, validate
 
 			//call model to submit data
 			require_once('model/formSubmit.php');
@@ -17,6 +16,7 @@
 		}
 		public function tutorRegister() {
 			require_once('view/pages/tutorRegister.php');
+			require_once('model/formSubmit.php');
 		}
 		public function error() {
 			require_once('view/pages/error.php');
