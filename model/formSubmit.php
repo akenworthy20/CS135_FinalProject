@@ -1,4 +1,8 @@
 <?php
+  include_once("dbconn.php");
+  session_start();
+
+  $name=$email=$phone=$password=$major=$monday=$tuesday=$wednesday=$thursday=$friday=$saturday=$sunday=" ";
 
   function sanitize($data) {
     $data = trim($data);
@@ -6,6 +10,17 @@
     $data = htmlspecialchars($data);
     return $data;
   }
+  function studentSubmit($name, $email, $phone, $password, $major, $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday){
+    $database = db::getInstance();
+    $sql = "INSERT INTO Students (name, email, phone, major, monday, tuesday , wednesday, thursday, friday, saturday, sunday) VALUES ('$name', '$email', '$phone', '$major', '$monday', '$tuesday', '$wednesday', '$thursday', '$friday', '$saturday', '$sunday')";
+    if(mysqli_query($database,$sql)) {
+      echo "Added to database";
+    } else {
+      echo "Error: Couldn't add to database";
+    }
+
+   mysqli_close($database);
+ }
 
 
   if (isset($_POST['submit'])) {
@@ -19,10 +34,11 @@
     }
     if (empty($_POST['email'])) {
       echo "<strong> E-mail is required </strong><br/>";
-    }
-    $email = sanitize($_POST['email']);
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      echo "<strong> Please enter a valid e-mail </strong><br/>";
+    } else {
+      $email = sanitize($_POST['email']);
+      if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "<strong> Please enter a valid e-mail </strong><br/>";
+      }
     }
     if (empty($_POST["phone"])) {
         echo "<strong> Please input full, valid US phone number </strong><br/>";
@@ -67,5 +83,6 @@
         echo "<strong> Please use only letters and white space </strong><br/>";
       }
     }
+    studentSubmit($name, $email, $phone, $password, $major, $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday);
   }
 ?>

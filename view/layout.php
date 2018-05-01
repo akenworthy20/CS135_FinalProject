@@ -11,7 +11,7 @@
     <!--bootstrap JS-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!--Our CSS-->
-    <link rel = "ourStylesheet" href="view/layout.css"></script>
+    <link rel = "stylesheet" href="view/layout.css"></script>
   </head>
   <div id = "page">
     <div id = "logo">
