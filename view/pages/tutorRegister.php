@@ -1,3 +1,4 @@
+<head> <link rel = "stylesheet" href = "view/layout.css"> </head>
 <form id='register' action='?controller=pages&action=tutorRegister' method='post'
     accept-charset='UTF-8'>
     <fieldset >
@@ -19,50 +20,43 @@
         <label for='major'> Major*:</label>
         <input type='text' name'major' id='major' maxlength="50" />
 
-        <fieldset>
-          <legend>Days available for tutoring:*</legend>
+        <fieldset align = "center">
+          <legend align = "left">Days available for tutoring:*</legend>
           <div>
             <input type="checkbox" id="monday" name="monday" value="monday">
             <label for="monday">Monday</label>
-          </div>
-          <div>
+
             <input type="checkbox" id="tuesday" name="tuesday" value="tuesday">
             <label for="tuesday">Tuesday</label>
-          </div>
-          <div>
+
             <input type="checkbox" id="wednesday" name="wednesday" value="wednesday">
             <label for="wednesday">Wednesday</label>
-          </div>
-          <div>
+
             <input type="checkbox" id="thursday" name="thursday" value="thursday">
             <label for="thursday">Thursday</label>
-          </div>
-          <div>
+
             <input type="checkbox" id="friday" name="friday" value="friday">
             <label for="monday">Friday</label>
-          </div>
-          <div>
+
             <input type="checkbox" id="saturday" name="saturday" value="saturday">
             <label for="monday">Saturday</label>
-          </div>
-          <div>
+
             <input type="checkbox" id="sunday" name="sunday" value="sunday">
             <label for="monday">Sunday</label>
           </div>
         </fieldset>
         <fieldset>
-          <legend class = 'tooltip'>Academic Info:
-            <span class = 'tooltiptext'>You don't have to answer these questions, but they will make it easier for students to find you and make you seem more appealing!</span>
-          </legend>
+          <span class>You don't have to answer these questions, but they will make it easier for students to find you and make you seem more appealing!</span>
+        </br>
+          <legend>Academic Info: </legend>
 
-          <label for='gpa' >Major GPA: </label>
+          <label for='gpa' >Major GPA(4 point scale): </label>
           <input type='text' name='gpa' id='gpa' maxlength="10" />
-
+        </br>
           <label for='bio'>Describe yourself in a tweet: </label>
-          <input type='text' name='bio'id = 'bio' maxlenght="240" />
+          <input type='text' name='bio'id = 'bio' maxlenght="240" size = "100"/>
 
-
-        <input type='submit' name='submit' value='submit' />
-
+        </fieldset>
+      <input type='submit' name='submit' value='submit' />
   </fieldset>
 </form>
