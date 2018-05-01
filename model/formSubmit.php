@@ -10,18 +10,42 @@
     $data = htmlspecialchars($data);
     return $data;
   }
-  function studentSubmit($name, $email, $phone, $password, $major, $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday){
-    $database = db::getInstance();
-    $sql = "INSERT INTO Students (name, email, phone, major, monday, tuesday , wednesday, thursday, friday, saturday, sunday) VALUES ('$name', '$email', '$phone', '$major', '$monday', '$tuesday', '$wednesday', '$thursday', '$friday', '$saturday', '$sunday')";
-    if(mysqli_query($database,$sql)) {
-      echo "Added to database";
-    } else {
-      echo "Error: Couldn't add to database";
-    }
+function studentSubmit($name, $email, $phone, $password, $major, $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday){
+    
+	try{
+	    $pdo = new PDO("mysql:host=localhost;dbname=TM", "root", "root", $pdo_options);
+	    // Set the PDO error mode to exception
+	    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	} catch(PDOException $e) {
+	    die("ERROR: Could not connect. " . $e->getMessage());
+	}
 
-   mysqli_close($database);
- }
+	try {
 
+		$sql = "INSERT INTO Students (name, email, phone, password, major, monday, tuesday , wednesday, thursday, friday, saturday, sunday VALUES (:name, :email, :phone_number, :major, :monday, :tuesday, :wednesday, :th', ':f', ':sat', ':sun')";
+			
+		$stmt = $pdo->prepare($sql);
+
+		$stmt->bindParam(':name', $_REQUEST['name']);
+		$stmt->bindParam(':email', $_REQUEST['email']);
+		$stmt->bindParam(':phone', $_REQUEST['phone']);
+		$stmt->bindParam(':password', $_REQUEST['password']);
+		$stmt->bindParam(':monday', $_REQUEST['monday']);
+		$stmt->bindParam(':tuesday', $_REQUEST['tuesday']);
+		$stmt->bindParam(':wednesday', $_REQUEST['wednesday']);
+		$stmt->bindParam(':thursday', $_REQUEST['th']);
+		$stmt->bindParam(':friday', $_REQUEST['f']);
+		$stmt->bindParam(':saturday', $_REQUEST['sat']);
+		$stmt->bindParam(':sunday', $_REQUEST['sun']);
+
+		$stmt->execute(); 
+		echo "Records inserted successfully.";
+	} catch (PDOException $e) {
+		die("ERROR: Could not execute $sql. " . $e -> getMesesage());
+	}
+ 
+ unset($pdo);
+}   
 
   if (isset($_POST['submit'])) {
     if (empty($_POST['name'])) {
