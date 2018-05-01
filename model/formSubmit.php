@@ -13,16 +13,16 @@
 function studentSubmit($name, $email, $phone, $password, $major, $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday){
     
 	try{
-	    $pdo = new PDO("mysql:host=localhost;dbname=TM", "root", "root", $pdo_options);
+	    $pdo = db::getInstance();
 	    // Set the PDO error mode to exception
 	    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	} catch(PDOException $e) {
-	    die("ERROR: Could not connect. " . $e->getMessage());
+	    die("ERROR: Could not connect");
 	}
 
 	try {
 
-		$sql = "INSERT INTO Students (name, email, phone, password, major, monday, tuesday , wednesday, thursday, friday, saturday, sunday VALUES (:name, :email, :phone_number, :major, :monday, :tuesday, :wednesday, :th', ':f', ':sat', ':sun')";
+		$sql = "INSERT INTO Students (name, email, phone, password, major, monday, tuesday , wednesday, thursday, friday, saturday, sunday VALUES (:name, :email, :phone_number, :major, :monday, :tuesday, :wednesday, :th , :f, :sat, :sun)";
 			
 		$stmt = $pdo->prepare($sql);
 
@@ -41,11 +41,11 @@ function studentSubmit($name, $email, $phone, $password, $major, $monday, $tuesd
 		$stmt->execute(); 
 		echo "Records inserted successfully.";
 	} catch (PDOException $e) {
-		die("ERROR: Could not execute $sql. " . $e -> getMesesage());
+		die("ERROR: Could not execute $sql.");
 	}
  
  unset($pdo);
-}   
+}
 
   if (isset($_POST['submit'])) {
     if (empty($_POST['name'])) {
