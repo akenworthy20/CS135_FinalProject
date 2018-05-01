@@ -4,12 +4,14 @@
   <head>
     <title>TutorMatch</title>
     <meta name="homepage" content="width=600px" />
-    <!--bootstrap css-->
+    <!--bootstrap CSS-->
     <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!--bootstrap jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!--bootstrap JS-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--Our CSS-->
+    <script src="/view/layout.css"></script>
   </head>
   <div id = "page">
     <div id = "logo">
