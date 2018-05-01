@@ -18,7 +18,7 @@
         <input type='password' name='password' id='password' maxlength="50" />
 
         <label for='major'> Major*:</label>
-        <input type='text' name'major' id='major' maxlength="50" />
+        <input type='text' name='major' id='major' maxlength="50" />
 
         <fieldset align = "center">
           <legend align = "left">Days available for tutoring:*</legend>

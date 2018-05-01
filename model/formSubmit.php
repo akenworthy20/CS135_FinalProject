@@ -1,9 +1,7 @@
 <?php
   include_once("dbconn.php");
   session_start();
-
   $name=$email=$phone=$password=$major=$monday=$tuesday=$wednesday=$thursday=$friday=$saturday=$sunday=" ";
-
   function sanitize($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -11,7 +9,7 @@
     return $data;
   }
 function studentSubmit($name, $email, $phone, $password, $major, $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday){
-    
+
 	try{
 	    $pdo = db::getInstance();
 	    // Set the PDO error mode to exception
@@ -19,34 +17,48 @@ function studentSubmit($name, $email, $phone, $password, $major, $monday, $tuesd
 	} catch(PDOException $e) {
 	    die("ERROR: Could not connect");
 	}
-
 	try {
+		$sql = "INSERT INTO Student (name, email, phone, password, major, monday, tuesday , wednesday, thursday, friday, saturday, sunday)
+    VALUES (:name, :email, :phone, :major, :password, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)";
 
-		$sql = "INSERT INTO Students (name, email, phone, password, major, monday, tuesday , wednesday, thursday, friday, saturday, sunday VALUES (:name, :email, :phone_number, :major, :monday, :tuesday, :wednesday, :th , :f, :sat, :sun)";
-			
 		$stmt = $pdo->prepare($sql);
+    if (!$stmt) {
+      print_r("error in prepare" . $pdo->error);
+    } else{
 
 		$stmt->bindParam(':name', $_REQUEST['name']);
 		$stmt->bindParam(':email', $_REQUEST['email']);
 		$stmt->bindParam(':phone', $_REQUEST['phone']);
+    $stmt->bindParam(':major', $_REQUEST['major']);
 		$stmt->bindParam(':password', $_REQUEST['password']);
+//print_r("1" . $_REQUEST['name']);
+//print_r("2" .$_REQUEST['email']);
+//print_r("3" .$_REQUEST['phone']);
+print_r("4" .$_REQUEST['major']);
+//print_r("5" .$_REQUEST['password']);
+
+
 		$stmt->bindParam(':monday', $_REQUEST['monday']);
 		$stmt->bindParam(':tuesday', $_REQUEST['tuesday']);
 		$stmt->bindParam(':wednesday', $_REQUEST['wednesday']);
-		$stmt->bindParam(':thursday', $_REQUEST['th']);
-		$stmt->bindParam(':friday', $_REQUEST['f']);
-		$stmt->bindParam(':saturday', $_REQUEST['sat']);
-		$stmt->bindParam(':sunday', $_REQUEST['sun']);
+		$stmt->bindParam(':thursday', $_REQUEST['thursday']);
+		$stmt->bindParam(':friday', $_REQUEST['friday']);
+		$stmt->bindParam(':saturday', $_REQUEST['saturday']);
+		$stmt->bindParam(':sunday', $_REQUEST['sunday']);
+		$stmt->execute();
 
-		$stmt->execute(); 
+
+
 		echo "Records inserted successfully.";
-	} catch (PDOException $e) {
+  }
+} catch (PDOException $e) {
+  print_r("error in prepare" . $pdo->error);
+  print_r(  "Error after execute:" . $e);
 		die("ERROR: Could not execute $sql.");
 	}
- 
+
  unset($pdo);
 }
-
   if (isset($_POST['submit'])) {
     if (empty($_POST['name'])) {
       echo "<strong> Name is required </strong><br/>";
@@ -92,7 +104,6 @@ function studentSubmit($name, $email, $phone, $password, $major, $monday, $tuesd
     if(!isset($_POST["monday"]) && !isset($_POST["tuesday"]) && !isset($_POST["wednesday"]) && !isset($_POST["thursday"]) && !isset($_POST["friday"]) && !isset($_POST["saturday"]) && !isset($_POST["sunday"])){
       echo "<strong> Please select your availability </strong><br/>";
     }
-
 //non-required form elements from tutorRegister//
     if (!empty($_POST["gpa"])) {
       $gpa = sanitize($_POST["major"]);

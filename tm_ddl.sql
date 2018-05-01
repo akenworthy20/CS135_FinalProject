@@ -6,16 +6,16 @@ CREATE TABLE Student (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(256) NOT NULL,
   email VARCHAR(256) NOT NULL,
-  phone_number VARCHAR (256) NOT NULL,
+  phone VARCHAR (256) NOT NULL,
   major VARCHAR (256) NOT NULL,
+  password VARCHAR (256) NOT NULL,
   monday TINYINT(1),
   tuesday TINYINT(1),
   wednesday TINYINT(1),
   thursday TINYINT(1),
   friday TINYINT(1),
   saturday TINYINT(1),
-  sunday TINYINT(1),
-  grad_year INT UNSIGNED NOT NULL
+  sunday TINYINT(1)
 );
 
 /*Add deposit info to tutor table*/
