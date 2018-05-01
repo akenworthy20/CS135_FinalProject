@@ -1,4 +1,4 @@
-<form id='register' action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>' method='post'
+<form id='register' action='?controller=pages&action=studentRegister' method='post'
     accept-charset='UTF-8'>
     <fieldset >
       <legend>Register</legend>
@@ -17,7 +17,7 @@
         <input type='password' name='password' id='password' maxlength="50" />
 
         <label for='major'> Major*:</label>
-        <input type='text' name'phone' id='major' maxlength="50" />
+        <input type='text' name'major' id='major' maxlength="50" />
 
         <fieldset>
           <legend>Days available for tutoring:*</legend>
@@ -51,7 +51,7 @@
           </div>
         </fieldset>
 
-        <input type='submit' name='Submit' value='Submit' />
+        <input type='submit' name='submit' value='submit' />
 
   </fieldset>
 </form>
