@@ -11,7 +11,7 @@
     <!--bootstrap JS-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!--Our CSS-->
-    <script src="/view/layout.css"></script>
+    <link rel = "ourStylesheet" href="view/layout.css"></script>
   </head>
   <div id = "page">
     <div id = "logo">
@@ -21,9 +21,9 @@
     <nav id = "tabs">
       <ul align = "center">
         <a href = '?controller=pages&action=home'> Home </a> |
-        <a href = '?controller=pages&action=aboutUs'> About Us </a> |
         <a href = '?controller=pages&action=studentRegister'>Register as Student</a> |
-        <a href = '?controller=pages&action=tutorRegister'>Register as Tutor</a>
+        <a href = '?controller=pages&action=tutorRegister'>Register as Tutor</a> |
+        <a href = '?controller=pages&action=aboutUs'> About Us </a>
       </ul>
     </nav>
     <hr>
