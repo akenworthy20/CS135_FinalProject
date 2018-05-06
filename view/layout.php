@@ -23,6 +23,7 @@
         <a href = '?controller=pages&action=home'> Home </a> |
         <a href = '?controller=pages&action=studentRegister'>Register as Student</a> |
         <a href = '?controller=pages&action=tutorRegister'>Register as Tutor</a> |
+        <a href = '?controller=pages&action=studentHome'>Student Home</a> |
         <a href = '?controller=pages&action=aboutUs'> About Us </a>
       </ul>
     </nav>

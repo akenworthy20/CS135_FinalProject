@@ -18,7 +18,10 @@
         <input type='password' name='password' id='password' maxlength="50" />
 
         <label for='major'> Major*:</label>
-        <input type='text' name'major' id='major' maxlength="50" />
+        <input type='text' name='major' id='major' maxlength="50" />
+
+        <label for='year'> Year*:</label>
+        <input type='text' name='year' id='year' maxlength="50" />
 
         <fieldset align = "center">
           <legend align = "left">Days available for tutoring:*</legend>
@@ -36,13 +39,13 @@
             <label for="thursday">Thursday</label>
 
             <input type="checkbox" id="friday" name="friday" value="friday">
-            <label for="monday">Friday</label>
+            <label for="friday">Friday</label>
 
             <input type="checkbox" id="saturday" name="saturday" value="saturday">
-            <label for="monday">Saturday</label>
+            <label for="saturday">Saturday</label>
 
             <input type="checkbox" id="sunday" name="sunday" value="sunday">
-            <label for="monday">Sunday</label>
+            <label for="sunday">Sunday</label>
           </div>
         </fieldset>
         <fieldset>
