@@ -70,10 +70,12 @@
 				<?php foreach($row as $value) {  ?>
 					<td>
 					<?php if ($value=="0"){
-						echo "Free";
+						echo '<div style="color: #45a049">&#10003</div>';
+					} else if ($value==null){
+						echo '<div style="color: #a0459c">&#10007</div>';
 					} else {
 						echo "{$value}";
-					} ?>
+					}?>
 					</td>
 				<?php } ?>
 		</tr>

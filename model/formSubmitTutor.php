@@ -8,7 +8,7 @@
     $data = htmlspecialchars($data);
     return $data;
   }
-function tutorSubmit($name, $email, $phone, $password, $major, $year, $gpa, $bio, $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday){
+  function tutorSubmit($name, $email, $phone, $password, $major, $year, $gpa, $bio, $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday){
 
 	try{
 	    $pdo = db::getInstance();
@@ -94,7 +94,7 @@ function tutorSubmit($name, $email, $phone, $password, $major, $year, $gpa, $bio
         $errors++;
     } else {
       $password = sanitize($_POST["password"]);
-      if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,10}/",$password)) {
+      if (!preg_match("/^.{6,}$/",$password)) {
         echo "<strong> Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character </strong><br/>";
         $errors++;
       }

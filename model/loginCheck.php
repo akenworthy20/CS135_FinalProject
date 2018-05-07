@@ -2,32 +2,38 @@
    include_once("dbconn.php");
    session_start();
 
-   $error = ' ';
-
    if(isset($_POST['submit'])) {
       // email and password sent from form
-      $db = db::getInstance();
+      $pdo = db::getInstance();
 
-      $email = mysqli_real_escape_string($db,$_POST['email']);
-      $password = mysqli_real_escape_string($db,$_POST['password']);
+      $sqlTutor = "SELECT id, email, password FROM Tutor WHERE email = :email";
+      $sqlStudent = "SELECT id, email, password FROM Student WHERE email = :email";
 
+      $stmtTutor = $pdo->prepare($sqlTutor);
+      $stmtStudent = $pdo->prepare($sqlStudent);
 
-      $sql = "SELECT id FROM students WHERE email = '$email' and password = '$password'";
-      $result = mysqli_query($db,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
+      $emailInput = $_REQUEST['email'];
+      $passInput = $_REQUEST['password'];
 
-      $count = mysqli_num_rows($result);
+      $stmtTutor->bindParam(':email', $emailInput);
+      $stmtStudent->bindParam(':email', $emailInput);
 
-      // If result matched $email and $password, table row must be 1 row
+      $stmtTutor->execute();
+      $stmtStudent->execute();
 
-      if($count == 1) {
-         session_register("email");
-         $_SESSION['login_user'] = $email;
-         header("Location: welcome.php");
+      $userTutor = $stmtTutor->fetch(PDO::FETCH_ASSOC);
+      $userStudent = $stmtStudent->fetch(PDO::FETCH_ASSOC);
+
+      if ($userTutor == false && $userStudent == false){
+        die('incorrect');
       } else {
-         $error = "Your Login Name or Password is invalid";
-         echo $error;
+        if ($userTutor['password'] == $passInput){
+          echo("correct tutor login");
+        } else if ($userStudent['password'] == $passInput){
+          header("Refresh:0; url=?controller=pages&action=studentHome");
+        } else {
+          echo ("no password for this email on file");
+        }
       }
    }
 ?>
