@@ -60,6 +60,6 @@
           <input type='text' name='bio'id = 'bio' maxlenght="240" size = "100"/>
 
         </fieldset>
-      <input type='submit' name='submit' value='submit' />
+      <input type='submit' name='submit' value='Submit' />
   </fieldset>
 </form>

@@ -2,6 +2,7 @@
 	class PagesController {
 		public function home() {
 			require_once('view/pages/home.php');
+			//call loginCheck to log-in user
 			require_once('model/loginCheck.php');
 		}
 		public function aboutUs() {
