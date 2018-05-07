@@ -63,7 +63,7 @@ function tutorSubmit($name, $email, $phone, $password, $major, $year, $gpa, $bio
       $errors++;
     } else {
       $name = sanitize($_POST['name']);
-      if (!preg_match("/^[a-zA-Z]*$/",$name)) {
+      if (!preg_match("/^[a-zA-Z\s]*$/",$name)) {
         echo "<strong> Please use only letters and white space </strong><br/>";
         $errors++;
       }
