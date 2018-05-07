@@ -61,7 +61,7 @@ function studentSubmit($name, $email, $phone, $password, $major, $monday, $tuesd
       $errors++;
     } else {
       $name = sanitize($_POST['name']);
-      if (!preg_match("/^[a-zA-Z]*$/",$name)) {
+      if (!preg_match("/^[a-zA-Z\s]*$/",$name)) {
         echo "<strong> Please use only letters and white space for name</strong><br/>";
         $errors++;
       }
