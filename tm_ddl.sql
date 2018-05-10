@@ -27,7 +27,7 @@ CREATE TABLE Tutor (
   year VARCHAR (256) NOT NULL,
   major VARCHAR (256) NOT NULL,
   password VARCHAR (256) NOT NULL,
-  gpa VARCHAR (256),
+  gpa FLOAT (3,2),
   bio VARCHAR (256),
   monday TINYINT(1),
   tuesday TINYINT(1),

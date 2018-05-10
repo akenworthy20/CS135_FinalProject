@@ -54,7 +54,7 @@
           <legend>Academic Info: </legend>
 
           <label for='gpa' >Major GPA(4 point scale): </label>
-          <input type='text' name='gpa' id='gpa' maxlength="10" />
+          <input type='number' step='0.01' name='gpa' id='gpa' maxlength="10" />
         </br>
           <label for='bio'>Describe yourself in a tweet: </label>
           <input type='text' name='bio'id = 'bio' maxlenght="240" size = "100"/>
