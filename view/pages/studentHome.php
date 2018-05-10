@@ -82,14 +82,14 @@
 		var modal = document.getElementById('myModal');
 
 		var span = document.getElementsByClassName("close")[0];
-
-		var info = element.parentElement.parentElement;
-
-		//how do I then access the two cells I want (phone, email), and put them in modal box
-
-		alert(info);
+		var text = document.getElementById("textBody");
+		var email = element.parentElement.parentElement.cells[1].innerHTML;
+		var phone = element.parentElement.parentElement.cells[2].innerHTML;
 
 		modal.style.display = "block";
+
+		text.innerHTML = "Email: "+email+", Phone: "+phone+"Click off the popup to go close";
+
 
 		span.onclick = function() {
 				modal.style.display = "none";
@@ -176,9 +176,7 @@
 </table>
 
 <div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-		<!-- Data I want to display-->
-		Wangus
+  <div class="modal-content" id = "textBody">
   </div>
+	<span class="close">&times;</span>
 </div>
