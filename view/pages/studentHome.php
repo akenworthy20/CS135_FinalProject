@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 	try {
 		$dbh = db::getInstance();
 	}catch(PDOException $e) {
@@ -180,3 +182,4 @@
   </div>
 	<span class="close">&times;</span>
 </div>
+?>
