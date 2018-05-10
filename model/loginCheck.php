@@ -28,11 +28,11 @@
         die('incorrect');
       } else {
         if ($userTutor['password'] == $passInput){
-          echo("correct tutor login");
+          header("Refresh:O; url=?controller=pages&action=tutorHome");
         } else if ($userStudent['password'] == $passInput){
           header("Refresh:0; url=?controller=pages&action=studentHome");
         } else {
-          echo ("Refresh:O; url=?controller=pages&action=tutorHome");
+          echo ("Incorrect login credentials");
         }
       }
    }
