@@ -1,3 +1,7 @@
+<?php
+
+session_start();
+
 <head> <link rel = "stylesheet" href = "view/layout.css"> </head>
 <form id='register' action='?controller=pages&action=tutorRegister' method='post'
     accept-charset='UTF-8'>
@@ -63,3 +67,4 @@
       <input type='submit' name='submit' value='Submit' />
   </fieldset>
 </form>
+?>
