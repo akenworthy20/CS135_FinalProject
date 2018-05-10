@@ -1,3 +1,6 @@
+<?php
+session_start();
+
 <div align="center">
   <h1> About Us </h1>
 
@@ -34,3 +37,4 @@
     </div>
   </div>
 </div>
+?>
