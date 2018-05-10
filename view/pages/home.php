@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+?>
 <html>
 
    <head>
@@ -35,4 +35,4 @@ session_start();
 
    </body>
 </html>
-?>
+
