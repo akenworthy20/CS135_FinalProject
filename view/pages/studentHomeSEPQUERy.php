@@ -6,11 +6,17 @@
 	}
 
 	$tableheader = false;
-	$query = "SELECT name,email,phone,year,major,gpa,bio,monday,tuesday,wednesday,thursday,friday,saturday,sunday FROM Tutor";
+	$query = "SELECT name,year,major,gpa,bio,monday,tuesday,wednesday,thursday,friday,saturday,sunday FROM Tutor";
 	$sth = $dbh->prepare($query);
 
+	$queryContact = "SELECT phone,email FROM Tutor";
+	$sthContact = $dbh->prepare($queryContact);
+
 	if(!$sth->execute()) {
-		die('Did not execute');
+		die('Tutor info not execute');
+	}
+	if(!$sthContact->execute()) {
+		die('Tutor contact info not execute');
 	}
 ?>
 <style>
@@ -36,8 +42,42 @@
 	    padding: 10px;
 	    text-shadow: 1px 1px 1px #fff;
 	}
-	#contact {
-		display: none;
+	/* The Modal (background) */
+	.modal {
+	    display: none; /* Hidden by default */
+	    position: fixed; /* Stay in place */
+	    z-index: 1; /* Sit on top */
+	    left: 0;
+	    top: 0;
+	    width: 100%; /* Full width */
+	    height: 100%; /* Full height */
+	    overflow: auto; /* Enable scroll if needed */
+	    background-color: rgb(0,0,0); /* Fallback color */
+	    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	}
+
+	/* Modal Content/Box */
+	.modal-content {
+	    background-color: #fefefe;
+	    margin: 15% auto; /* 15% from the top and centered */
+	    padding: 20px;
+	    border: 1px solid #888;
+	    width: 80%; /* Could be more or less, depending on screen size */
+	}
+
+	/* The Close Button */
+	.close {
+	    color: #aaa;
+	    float: right;
+	    font-size: 28px;
+	    font-weight: bold;
+	}
+
+	.close:hover,
+	.close:focus {
+	    color: black;
+	    text-decoration: none;
+	    cursor: pointer;
 	}
 </style>
 <script>
@@ -81,28 +121,24 @@
 	function popup(element){
 		var modal = document.getElementById('myModal');
 
-		var span = document.getElementsByClassName("close")[0];
-		var text = document.getElementById("textBody");
-		var email = element.parentElement.parentElement.cells[1].innerHTML;
-		var phone = element.parentElement.parentElement.cells[2].innerHTML;
+		var name = document.getElementById(element).parentElement.parentElement.find('td');
 
+		alert(name);
+
+		var span = document.getElementsByClassName("close")[0];
 		modal.style.display = "block";
 
-		text.innerHTML = "Email: "+email+", Phone: "+phone+"Click off the popup to go close";
-
-
 		span.onclick = function() {
-				modal.style.display = "none";
+		    modal.style.display = "none";
 		}
 
 		window.onclick = function(event) {
-				if (event.target == modal) {
-						modal.style.display = "none";
-				}
+		    if (event.target == modal) {
+		        modal.style.display = "none";
+		    }
 		}
 
 	}
-
 </script>
 
 <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for names..">
@@ -118,65 +154,63 @@
 		if($tableheader == false) { ?>
 			<tr>
 				<?php foreach($row as $key=>$value) { ?>
-					<?php if ($key=="phone" || $key =="email"){ ?>
-						<th id="contact"> <?php echo "${key}" ?> </th>
-					<?php } else {?>
-						<th>
-							<?php
-								if ($key=="monday"){
-									echo "M";
-								} else if ($key=="tuesday"){
-									echo "T";
-								} else if ($key=="wednesday"){
-									echo "W";
-								} else if ($key=="thursday"){
-									echo "Tr";
-								} else if ($key=="friday"){
-									echo "F";
-								} else if ($key=="saturday"){
-									echo "Sat";
-								} else if ($key=="sunday"){
-									echo "Sun";
-								} else {
-									echo "{$key}";
-								}
-							?>
-						</th>
-				<?php }
-			} ?>
+				<th>
+					<?php
+						if ($key=="monday"){
+							echo "M";
+						} else if ($key=="tuesday"){
+							echo "T";
+						} else if ($key=="wednesday"){
+							echo "W";
+						} else if ($key=="thursday"){
+							echo "Tr";
+						} else if ($key=="friday"){
+							echo "F";
+						} else if ($key=="saturday"){
+							echo "Sat";
+						} else if ($key=="sunday"){
+							echo "Sun";
+						} else {
+							echo "{$key}";
+						}
+					?>
+				</th>
+				<?php } ?>
+				<th>
+
+				</th>
 			</tr>
 			<?php $tableheader = true;
 		} ?>
 		<tr name="tutors">
-				<?php $count = 0;
-				foreach($row as $value) {
-						$count++;
-						if ($count>1 && $count <4){
-							?>
-							<td id = "contact">
-								<?php echo "{$value}"; ?>
-							</td>
-					<?php } else {?>
+				<?php foreach($row as $value) {  ?>
 						<td>
-							<?php if ($value=="0"){
-								echo '<div style="color: #45a049">&#10003</div>';
-							} else if ($value==null){
-								echo '<div style="color: #a0459c">&#10007</div>';
-							} else {
-								echo "{$value}";
-							}?>
+						<?php if ($value=="0"){
+							echo '<div style="color: #45a049">&#10003</div>';
+						} else if ($value==null){
+							echo '<div style="color: #a0459c">&#10007</div>';
+						} else {
+							echo "{$value}";
+						}?>
 						</td>
-				<?php }
-				} ?>
+				<?php } ?>
 				<td>
-					<button type="button" id="contactBtn" onclick="popup(this)">Contact Information</button>
+					<button type="button" id="contactBtn" onclick="popup(this.id)">Contact Information</button>
 				</td>
 		</tr>
 	<?php } ?>
 </table>
 
 <div id="myModal" class="modal">
-  <div class="modal-content" id = "textBody">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <?php
+		//This is where the data should go for the relevant tutor.  Maybe just access it all through the javascript?
+			while ($row = $sthContact->fetch(PDO::FETCH_ASSOC)){
+				foreach($row as $value){
+					echo "{$value}";
+				}
+			}
+		?>
   </div>
-	<span class="close">&times;</span>
 </div>

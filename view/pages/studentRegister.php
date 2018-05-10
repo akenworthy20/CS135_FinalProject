@@ -1,7 +1,3 @@
-<?php
-
-session_start();
-
 <head> <link rel = "stylesheet" href = "view/layout.css"> </head>
 <form id='register' action='?controller=pages&action=studentRegister' method='post'
     accept-charset='UTF-8'>
@@ -54,4 +50,3 @@ session_start();
 
   </fieldset>
 </form>
-?>

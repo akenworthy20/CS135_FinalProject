@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <div align="center">
   <h1> About Us </h1>
 
@@ -37,4 +34,3 @@ session_start();
     </div>
   </div>
 </div>
-

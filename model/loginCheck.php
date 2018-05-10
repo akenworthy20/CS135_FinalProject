@@ -32,7 +32,7 @@
         } else if ($userStudent['password'] == $passInput){
           header("Refresh:0; url=?controller=pages&action=studentHome");
         } else {
-          header("Refresh:0; url=?controller=pages&action=tutorHome");
+          echo ("no password for this email on file");
         }
       }
    }

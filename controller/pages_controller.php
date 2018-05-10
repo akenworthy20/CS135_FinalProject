@@ -27,8 +27,5 @@
 		public function studentHome() {
 			require_once('view/pages/studentHome.php');
 		}
-		public function tutorHome() {
-			require_once('view/pages/tutorHome.php');
-		}
 	}
 ?>

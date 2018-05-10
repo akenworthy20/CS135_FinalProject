@@ -36,9 +36,6 @@
 	    padding: 10px;
 	    text-shadow: 1px 1px 1px #fff;
 	}
-	#contact {
-		display: none;
-	}
 </style>
 <script>
 	function searchFunction() {
@@ -78,31 +75,6 @@
 	    }
 	  }
 	}
-	function popup(element){
-		var modal = document.getElementById('myModal');
-
-		var span = document.getElementsByClassName("close")[0];
-		var text = document.getElementById("textBody");
-		var email = element.parentElement.parentElement.cells[1].innerHTML;
-		var phone = element.parentElement.parentElement.cells[2].innerHTML;
-
-		modal.style.display = "block";
-
-		text.innerHTML = "Email: "+email+", Phone: "+phone+"Click off the popup to go close";
-
-
-		span.onclick = function() {
-				modal.style.display = "none";
-		}
-
-		window.onclick = function(event) {
-				if (event.target == modal) {
-						modal.style.display = "none";
-				}
-		}
-
-	}
-
 </script>
 
 <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for names..">
@@ -118,65 +90,43 @@
 		if($tableheader == false) { ?>
 			<tr>
 				<?php foreach($row as $key=>$value) { ?>
-					<?php if ($key=="phone" || $key =="email"){ ?>
-						<th id="contact"> <?php echo "${key}" ?> </th>
-					<?php } else {?>
-						<th>
-							<?php
-								if ($key=="monday"){
-									echo "M";
-								} else if ($key=="tuesday"){
-									echo "T";
-								} else if ($key=="wednesday"){
-									echo "W";
-								} else if ($key=="thursday"){
-									echo "Tr";
-								} else if ($key=="friday"){
-									echo "F";
-								} else if ($key=="saturday"){
-									echo "Sat";
-								} else if ($key=="sunday"){
-									echo "Sun";
-								} else {
-									echo "{$key}";
-								}
-							?>
-						</th>
-				<?php }
-			} ?>
+				<th>
+					<?php
+						if ($key=="monday"){
+							echo "M";
+						} else if ($key=="tuesday"){
+							echo "T";
+						} else if ($key=="wednesday"){
+							echo "W";
+						} else if ($key=="thursday"){
+							echo "Tr";
+						} else if ($key=="friday"){
+							echo "F";
+						} else if ($key=="saturday"){
+							echo "Sat";
+						} else if ($key=="sunday"){
+							echo "Sun";
+						} else {
+							echo "{$key}";
+						}
+					?>
+				</th>
+				<?php } ?>
 			</tr>
 			<?php $tableheader = true;
 		} ?>
 		<tr name="tutors">
-				<?php $count = 0;
-				foreach($row as $value) {
-						$count++;
-						if ($count>1 && $count <4){
-							?>
-							<td id = "contact">
-								<?php echo "{$value}"; ?>
-							</td>
-					<?php } else {?>
-						<td>
-							<?php if ($value=="0"){
-								echo '<div style="color: #45a049">&#10003</div>';
-							} else if ($value==null){
-								echo '<div style="color: #a0459c">&#10007</div>';
-							} else {
-								echo "{$value}";
-							}?>
-						</td>
-				<?php }
-				} ?>
-				<td>
-					<button type="button" id="contactBtn" onclick="popup(this)">Contact Information</button>
-				</td>
+				<?php foreach($row as $value) {  ?>
+					<td>
+					<?php if ($value=="0"){
+						echo '<div style="color: #45a049">&#10003</div>';
+					} else if ($value==null){
+						echo '<div style="color: #a0459c">&#10007</div>';
+					} else {
+						echo "{$value}";
+					}?>
+					</td>
+				<?php } ?>
 		</tr>
 	<?php } ?>
 </table>
-
-<div id="myModal" class="modal">
-  <div class="modal-content" id = "textBody">
-  </div>
-	<span class="close">&times;</span>
-</div>
