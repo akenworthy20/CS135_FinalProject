@@ -15,7 +15,7 @@
   }
 
   //create a list of all the controllers that are defined
-  $controllers = array('pages' => ['home','aboutUs','studentRegister','tutorRegister','error','studentHome']);
+  $controllers = array('pages' => ['home','aboutUs','studentRegister','tutorRegister','error','studentHome','tutorHome']);
 
   //check to see if requested controller is in $controllers
   if (array_key_exists($controller, $controllers)) {
