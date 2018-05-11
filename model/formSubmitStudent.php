@@ -8,51 +8,44 @@
     $data = htmlspecialchars($data);
     return $data;
   }
-function studentSubmit($name, $email, $phone, $password, $major, $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday){
+  function studentSubmit($name, $email, $phone, $password, $major, $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday){
+  	try{
+  	    $pdo = db::getInstance();
+  	    // Set the PDO error mode to exception
+  	    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  	} catch(PDOException $e) {
+  	    die("ERROR: Could not connect");
+  	}
+  	try {
+  		$sql = "INSERT INTO Student (name, email, phone, password, major, monday, tuesday , wednesday, thursday, friday, saturday, sunday)
+      VALUES (:name, :email, :phone, :password, :major, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)";
 
-	try{
-	    $pdo = db::getInstance();
-	    // Set the PDO error mode to exception
-	    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	} catch(PDOException $e) {
-	    die("ERROR: Could not connect");
-	}
-	try {
-		$sql = "INSERT INTO Student (name, email, phone, password, major, monday, tuesday , wednesday, thursday, friday, saturday, sunday)
-    VALUES (:name, :email, :phone, :password, :major, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)";
-
-		$stmt = $pdo->prepare($sql);
-    if (!$stmt) {
+  		$stmt = $pdo->prepare($sql);
+      if (!$stmt) {
+        print_r("error in prepare" . $pdo->error);
+      } else{
+    		$stmt->bindParam(':name', $_REQUEST['name']);
+    		$stmt->bindParam(':email', $_REQUEST['email']);
+    		$stmt->bindParam(':phone', $_REQUEST['phone']);
+        $stmt->bindParam(':major', $_REQUEST['major']);
+    		$stmt->bindParam(':password', $_REQUEST['password']);
+    		$stmt->bindParam(':monday', $_REQUEST['monday']);
+    		$stmt->bindParam(':tuesday', $_REQUEST['tuesday']);
+    		$stmt->bindParam(':wednesday', $_REQUEST['wednesday']);
+    		$stmt->bindParam(':thursday', $_REQUEST['thursday']);
+    		$stmt->bindParam(':friday', $_REQUEST['friday']);
+    		$stmt->bindParam(':saturday', $_REQUEST['saturday']);
+    		$stmt->bindParam(':sunday', $_REQUEST['sunday']);
+    		$stmt->execute();
+    		echo "Records inserted successfully.";
+      }
+    } catch (PDOException $e) {
       print_r("error in prepare" . $pdo->error);
-    } else{
-
-		$stmt->bindParam(':name', $_REQUEST['name']);
-		$stmt->bindParam(':email', $_REQUEST['email']);
-		$stmt->bindParam(':phone', $_REQUEST['phone']);
-    $stmt->bindParam(':major', $_REQUEST['major']);
-		$stmt->bindParam(':password', $_REQUEST['password']);
-
-		$stmt->bindParam(':monday', $_REQUEST['monday']);
-		$stmt->bindParam(':tuesday', $_REQUEST['tuesday']);
-		$stmt->bindParam(':wednesday', $_REQUEST['wednesday']);
-		$stmt->bindParam(':thursday', $_REQUEST['thursday']);
-		$stmt->bindParam(':friday', $_REQUEST['friday']);
-		$stmt->bindParam(':saturday', $_REQUEST['saturday']);
-		$stmt->bindParam(':sunday', $_REQUEST['sunday']);
-		$stmt->execute();
-
-
-
-		echo "Records inserted successfully.";
-  }
-} catch (PDOException $e) {
-  print_r("error in prepare" . $pdo->error);
-  print_r(  "Error after execute:" . $e);
-		die("ERROR: Could not execute $sql.");
-	}
-
- unset($pdo);
-}
+      print_r(  "Error after execute:" . $e);
+  		die("ERROR: Could not execute $sql.");
+  	}
+   unset($pdo);
+ }
 
   $errors = 0;
   if (isset($_POST['submit'])) {
@@ -93,7 +86,7 @@ function studentSubmit($name, $email, $phone, $password, $major, $monday, $tuesd
     } else {
       $password = sanitize($_POST["password"]);
       if (!preg_match("/^.{6,}$/",$password)) {
-        echo "<strong> Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character for password</strong><br/>";
+        echo "<strong> Password must be at least six characters </strong><br/>";
         $errors++;
       }
     }

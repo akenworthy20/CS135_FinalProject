@@ -49,7 +49,6 @@
 	  table = document.getElementById("tutorTable");
 		tr = table.getElementsByTagName("tr");
 		searchParameter = document.getElementById("searchSelect").selectedIndex;
-
 	  // Loop through all table rows, and hide those who don't match the search query
 	  for (i = 0; i < tr.length; i++) {
 			if (searchParameter==0) {//name
@@ -69,7 +68,7 @@
 		        tr[i].style.display = "none";
 		      }
 				} else {
-					if (parseFloat(td.innerHTML) >= parseFloat(filter)) {
+					if (parseFloat(td.innerHTML) >= parseFloat(filter) || filter=="") {
 		        tr[i].style.display = "";
 		      } else {
 		        tr[i].style.display = "none";
@@ -88,7 +87,7 @@
 
 		modal.style.display = "block";
 
-		text.innerHTML = "Email: "+email+", Phone: "+phone+"Click off the popup to go close";
+		text.innerHTML = "Email: "+email+", Phone: "+phone+"Click off the popup to close";
 
 
 		span.onclick = function() {
@@ -102,16 +101,18 @@
 		}
 
 	}
-
+	function updateSearch(){
+    document.getElementById("myInput").placeholder="Search for "+document.getElementById("searchSelect").options[document.getElementById("searchSelect").selectedIndex].value;
+  }
 </script>
 
-<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for names..">
+<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for name">
 &nbsp; Select search parameter:
-<select id="searchSelect">
+<select id="searchSelect" onchange="updateSearch()">
   <option value="name">Name</option>
   <option value="year">Year</option>
   <option value="major">Major</option>
-  <option value="gpa">GPA Above</option>
+  <option value="min gpa">Minimum GPA</option>
 </select>
 <table class = "tutorTable" id = "tutorTable">
 	<?php while($row = $sth->fetch(PDO::FETCH_ASSOC)) {

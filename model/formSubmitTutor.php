@@ -24,33 +24,28 @@
 		$stmt = $pdo->prepare($sql);
     if (!$stmt) {
       print_r("error in prepare" . $pdo->error);
-    } else{
-
-		$stmt->bindParam(':name', $_REQUEST['name']);
-		$stmt->bindParam(':email', $_REQUEST['email']);
-		$stmt->bindParam(':phone', $_REQUEST['phone']);
-    $stmt->bindParam(':password', $_REQUEST['password']);
-    $stmt->bindParam(':major', $_REQUEST['major']);
-    $stmt->bindParam(':year', $_REQUEST['year']);
-    $stmt->bindParam(':gpa', $_REQUEST['gpa']);
-    $stmt->bindParam(':bio', $_REQUEST['bio']);
-
-		$stmt->bindParam(':monday', $_REQUEST['monday']);
-		$stmt->bindParam(':tuesday', $_REQUEST['tuesday']);
-		$stmt->bindParam(':wednesday', $_REQUEST['wednesday']);
-		$stmt->bindParam(':thursday', $_REQUEST['thursday']);
-		$stmt->bindParam(':friday', $_REQUEST['friday']);
-		$stmt->bindParam(':saturday', $_REQUEST['saturday']);
-		$stmt->bindParam(':sunday', $_REQUEST['sunday']);
-		$stmt->execute();
-
-
-
-		echo "Records inserted successfully.";
-  }
-} catch (PDOException $e) {
-  print_r("error in prepare" . $pdo->error);
-  print_r(  "Error after execute:" . $e);
+    } else {
+  		$stmt->bindParam(':name', $_REQUEST['name']);
+  		$stmt->bindParam(':email', $_REQUEST['email']);
+  		$stmt->bindParam(':phone', $_REQUEST['phone']);
+      $stmt->bindParam(':password', $_REQUEST['password']);
+      $stmt->bindParam(':major', $_REQUEST['major']);
+      $stmt->bindParam(':year', $_REQUEST['year']);
+      $stmt->bindParam(':gpa', $_REQUEST['gpa']);
+      $stmt->bindParam(':bio', $_REQUEST['bio']);
+  		$stmt->bindParam(':monday', $_REQUEST['monday']);
+  		$stmt->bindParam(':tuesday', $_REQUEST['tuesday']);
+  		$stmt->bindParam(':wednesday', $_REQUEST['wednesday']);
+  		$stmt->bindParam(':thursday', $_REQUEST['thursday']);
+  		$stmt->bindParam(':friday', $_REQUEST['friday']);
+  		$stmt->bindParam(':saturday', $_REQUEST['saturday']);
+  		$stmt->bindParam(':sunday', $_REQUEST['sunday']);
+  		$stmt->execute();
+  		echo "Records inserted successfully.";
+    }
+  } catch (PDOException $e) {
+    print_r("error in prepare" . $pdo->error);
+    print_r(  "Error after execute:" . $e);
 		die("ERROR: Could not execute $sql.");
 	}
 
@@ -83,7 +78,6 @@
         $errors++;
     } else {
       $phone = sanitize($_POST["phone"]);
-      // check phone number syntax to ensure it is 10 digits long, exactly
       if (!preg_match("/[\d{3}]-?[\d{3}]-?[\d{4}]/",$phone)) {
         echo "<strong> Please input full, valid US phone number </strong><br/>";
         $errors++;
@@ -95,7 +89,7 @@
     } else {
       $password = sanitize($_POST["password"]);
       if (!preg_match("/^.{6,}$/",$password)) {
-        echo "<strong> Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character </strong><br/>";
+        echo "<strong> Password must be at least six characters </strong><br/>";
         $errors++;
       }
     }
@@ -123,18 +117,23 @@
       echo "<strong> Please select your availability </strong><br/>";
       $errors++;
     }
-//non-required form elements from tutorRegister//
-    if (!empty($_POST["gpa"])) {
+    //non-required form elements from tutorRegister//
+    if (empty($_POST["gpa"])) {
+      echo "<strong> Please input a gpa </strong><br/>";
+      $errors++;
+    } else {
       $gpa = sanitize($_POST["gpa"]);
       if (!preg_match("/[0-4].[0-9]/",$gpa)) {
         echo "<strong> Please round your gpa to the nearest tenth </strong><br/>";
         $errors++;
       }
     }
-    if (!empty($_POST["bio"])) {
+    if (empty($_POST["bio"])) {
+      echo "<strong> Please input a bio </strong><br/>";
+      $errors++;
+    } else {
       $bio = sanitize($_POST["bio"]);
-      // check phone number syntax to ensure it is 10 digits long, exactly
-      if (!preg_match("/^[a-zA-Z]*$/",$bio)) {
+      if (!preg_match("/^[a-zA-Z\s]*$/",$bio)) {
         echo "<strong> Please use only letters and white space </strong><br/>";
         $errors++;
       }

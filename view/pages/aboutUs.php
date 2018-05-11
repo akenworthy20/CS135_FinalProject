@@ -25,7 +25,7 @@
       <img src="https://i.imgur.com/W4iTdRU.jpg" style="width:500px">
     </div>
     <div class="bean hide">
-      <strong>Conor Hogan is a brilliant junior at Claremont McKenna College.  In his free time, he enjoys being a softboy.  He has small pecs :( </strong></br>
+      <strong>Conor Hogan is a brilliant junior at Claremont McKenna College.  In his free time, he enjoys playing soccer. </strong></br>
       <img src="https://i.imgur.com/O2rMjRF.jpg" style="width:500px">
     </div>
     <div class="avi hide">
