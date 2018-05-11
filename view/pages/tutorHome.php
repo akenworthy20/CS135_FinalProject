@@ -1,6 +1,5 @@
-  <div align = "center">
+   <div align = "center">
     <h2> Tutor Home </h2>
-  </div>
 
   <div align = "left">
     <p> <strong> Welcome to the tutor home page! </strong> </br>
@@ -11,16 +10,18 @@
         die('Could not connect');
       }
 
-      $query = "SELECT COUNT(id) as num FROM Student"
-      $sth = $dbh->prepare($query)
+      $query = "SELECT * FROM Student";
+      $sth = $dbh->prepare($query);
       if(!$sth->execute()) {
     		die('Did not execute');
-    	}
-
-      echo "There are currently " . 'num' . "students registered for TutorMatch!"
+    	} else {
+         $numstudents = $sth->rowCount();
+      }
+      echo "There are currently " . $numstudents . " students registered for TutorMatch!";
       ?>
     </p> </br> <hr>
 
-    <h3> All you have to do now is wait!  When a student wants to solicit you
+    <span> All you have to do now is wait!  When a student wants to solicit you
       as a tutor, they can get your contact info and will reach out, so make sure to keep an eye
-      on your phone and email! Thank you for using TutorMatch! </h3>
+      on your phone and email! Thank you for using TutorMatch! </span>
+</div>
